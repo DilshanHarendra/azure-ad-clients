@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Amazing Smart Watch",
+    "image": "https://source.unsplash.com/2cFZ_FB08UM/600x600",
+    "price": "280",
+    "category": "Watch"
+  },
+  {
+    "title": "Modern Shoes",
+    "image": "https://source.unsplash.com/KStSiM1UvPw/600x600",
+    "price": "65",
+    "category": "Shoes"
+  },
+  {
+    "title": "Cool Sunglasses",
+    "image": "https://source.unsplash.com/K62u25Jk6vo/600x600",
+    "price": "92",
+    "category": "Sunglasses"
+  },
+  {
+    "title": "Sneakers",
+    "image": "https://source.unsplash.com/LxVxPA1LOVM/600x600",
+    "price": "43",
+    "category": "Shoes"
+  },
+  {
+    "title": "Bluetooth headphones",
+    "image": "https://source.unsplash.com/NuOGFo4PudE/600x600",
+    "price": "160",
+    "category": "Headphones"
+  },
+  {
+    "title": "Bluetooth headphones",
+    "image": "https://source.unsplash.com/NuOGFo4PudE/600x600",
+    "price": "160",
+    "category": "Headphones"
+  },
+  {
+    "title": "Bluetooth headphones",
+    "image": "https://source.unsplash.com/NuOGFo4PudE/600x600",
+    "price": "160",
+    "category": "Headphones"
+  },
+  {
+    "title": "Bluetooth headphones",
+    "image": "https://source.unsplash.com/NuOGFo4PudE/600x600",
+    "price": "160",
+    "category": "Headphones"
+  }
+]
