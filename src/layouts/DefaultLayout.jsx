@@ -1,31 +1,28 @@
 import React from "react";
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../authConfig.js";
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate } from "@azure/msal-react";
+import {Outlet} from 'react-router-dom';
+import Navbar from "./default/Navbar.jsx";
+import Footer from "./default/Footer.jsx";
 
-
-/**
- * Renders a button which, when selected, will open a popup for login
- */
-export const DefaultLayout = () => {
-    const { instance } = useMsal();
-
-    const handleLogin = (loginType) => {
-        if (loginType === "popup") {
-            instance.loginPopup(loginRequest).catch(e => {
-                console.log(e);
-            });
-        }
-    }
+const DefaultLayout = () => {
     return (
         <>
+         <Navbar/>
+            <Outlet/>
+            <Footer/>
             <AuthenticatedTemplate>
-                <p>You are signed in!</p>
+                <div className="fixed bottom-0 right-10 bg-white z-50 py-2 px-6 shadow flex items-center border border-gray-200">
+                    <svg className="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd"
+                              d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                              clipRule="evenodd"/>
+                    </svg>
+                    Message
+                </div>
             </AuthenticatedTemplate>
-            <UnauthenticatedTemplate>
-                <button variant="secondary" className="ml-auto" onClick={() => handleLogin("popup")}>Sign in using Popup</button>
-            </UnauthenticatedTemplate>
         </>
 
     );
 }
+export default DefaultLayout
