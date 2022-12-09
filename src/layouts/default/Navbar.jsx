@@ -3,11 +3,16 @@ import {Link, NavLink} from "react-router-dom";
 import logo from "../../assets/img/logo.jpeg"
 import {UnauthenticatedTemplate,AuthenticatedTemplate} from "@azure/msal-react";
 import { useMsal } from "@azure/msal-react";
-import {loginRequest,msalConfig} from "../../../authConfig.js";
-const Navbar = () => {
+import {loginRequest} from "../../../authConfig.js";
+import {useDispatch, useSelector} from 'react-redux'
+import {setActiveAccount} from "../../store/reducers/usersSlice.js";
+import {activeAccountSelectors} from "../../store/selectors/userSelectors.js";
 
+const Navbar = () => {
+    const dispatch = useDispatch()
     const [profileDropdown,setProfileDropdown] = useState(false)
-    const { instance } = useMsal();
+    const { instance,accounts } = useMsal();
+    const activeAccount = useSelector(activeAccountSelectors)
 
     const logout = () => {
             instance.logoutRedirect({
@@ -15,11 +20,17 @@ const Navbar = () => {
             });
 
     }
-    console.log(msalConfig)
     const handleLogin = () => {
         instance.loginRedirect(loginRequest).catch(e=>{
                 console.log(e)
         })
+    }
+
+    const setAccount = (e) =>{
+        if (e.target.value){
+            dispatch(setActiveAccount(JSON.parse(e.target.value)))
+        }
+
     }
 
 
@@ -101,8 +112,18 @@ const Navbar = () => {
                                        <div
                                            className="bg-white ring-1 ring-black ring-opacity-5 rounded divide-y divide-gray-100">
                                            <div className="p-2 space-y-1">
+                                               {
+                                                   <div className="px-2">
+                                                       <label htmlFor="accounts" className="text-sm font-medium text-gray-600">Accounts</label>
+                                                       <select value={JSON.stringify(activeAccount)} onChange={setAccount} name="" id="accounts" className="w-full border p-2">
+                                                           {accounts.map((account,index)=>
+                                                               <option value={JSON.stringify(account)} key={index}>{account.username||account.name}</option>
+                                                           )}
+                                                       </select>
+                                                   </div>
+                                               }
                                                <Link to="profile" role="menuitem"
-                                                  className="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
+                                                     className="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
                                                    <svg className="hi-solid hi-user-circle inline-block w-5 h-5 opacity-50"
                                                         fill="currentColor" viewBox="0 0 20 20"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -112,6 +133,7 @@ const Navbar = () => {
                                                    </svg>
                                                    <span>Profile</span>
                                                </Link>
+
                                                <Link to="/" role="menuitem"
                                                   className="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
                                                    <svg className="hi-solid hi-inbox inline-block w-5 h-5 opacity-50"
