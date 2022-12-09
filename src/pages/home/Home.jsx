@@ -5,10 +5,10 @@ import {AuthenticatedTemplate} from "@azure/msal-react";
 const Home = ()=>{
     return <>
         <Hero/>
+        <ProductsSection title="From Backend"/>
         <AuthenticatedTemplate>
             <ProductsSection title="Your Choice"/>
         </AuthenticatedTemplate>
-
         <ProductsSection title="New Arrivals"/>
         <ProductsSection title="Deals"/>
 
