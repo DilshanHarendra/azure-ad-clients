@@ -1,7 +1,9 @@
 import React from "react";
 import hero from "../../assets/img/hero.jpg"
 import {loginRequest} from "../../../authConfig.js";
-import {useMsal} from "@azure/msal-react";
+import {useMsal,UnauthenticatedTemplate,AuthenticatedTemplate} from "@azure/msal-react";
+import {Link} from "react-router-dom";
+
 const Hero = ()=>{
 
     const { instance } = useMsal();
@@ -37,11 +39,20 @@ const Hero = ()=>{
                             </svg>
                             <span>Buy Now</span>
                         </button>
-                        <button type="button"
-                                onClick={handleLogin}
-                                className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-6 py-4 leading-6 rounded border-gray-700 bg-gray-700 text-white hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-gray-700 active:border-gray-700">
-                            <span>Sign in</span>
-                        </button>
+                        <UnauthenticatedTemplate>
+                            <button type="button"
+                                    onClick={handleLogin}
+                                    className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-6 py-4 leading-6 rounded border-gray-700 bg-gray-700 text-white hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-gray-700 active:border-gray-700">
+                                <span>Sign in</span>
+                            </button>
+                        </UnauthenticatedTemplate>
+                        <AuthenticatedTemplate>
+                            <Link to="/"
+                                    className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-6 py-4 leading-6 rounded border-gray-700 bg-gray-700 text-white hover:text-white hover:bg-gray-800 hover:border-gray-800 focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-gray-700 active:border-gray-700">
+                                <span>Add to Cart</span>
+                            </Link>
+                        </AuthenticatedTemplate>
+
                     </div>
                 </div>
             </div>
