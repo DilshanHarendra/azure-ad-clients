@@ -27,3 +27,4 @@ dist-ssr
 /public-client/.env
 /public-client/node_modules/
 /backend/node_modules/
+/backend/node_modules/

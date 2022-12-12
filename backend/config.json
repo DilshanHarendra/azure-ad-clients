@@ -1,0 +1,23 @@
+{
+  "credentials": {
+    "tenantName": "dperera",
+    "clientID": "29e8ee0f-c08b-497c-b5e9-20776776f00d"
+  },
+  "policies": {
+    "policyName": "B2C_1_sign_up_and_sign_in"
+  },
+  "resource": {
+    "scope": ["product.write","product.read"]
+  },
+  "metadata": {
+    "authority": "login.microsoftonline.com",
+    "discovery": ".well-known/openid-configuration",
+    "version": "v2.0"
+  },
+  "settings": {
+    "isB2C": true,
+    "validateIssuer": false,
+    "passReqToCallback": false,
+    "loggingLevel": "info"
+  }
+}
