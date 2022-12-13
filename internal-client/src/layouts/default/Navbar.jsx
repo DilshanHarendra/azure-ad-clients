@@ -1,8 +1,11 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
+import {useSelector} from "react-redux";
+import {userSelectors} from "../../store/selectors/userSelectors.js";
 const Navbar = ({handleSidebar}) => {
 
+    const user = useSelector(userSelectors)
     const { instance } = useMsal();
 
     const [profileDropdown,setProfileDropdown] = useState(false)
@@ -78,7 +81,7 @@ const Navbar = ({handleSidebar}) => {
                                     onClick={()=>setProfileDropdown(prev=>!prev)}
                                     className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none"
                                     id="tk-dropdown-layouts-user" aria-haspopup="true" aria-expanded="true">
-                                <span>Admin</span>
+                                <span>{user?.name}</span>
                                 <svg className="hi-solid hi-chevron-down inline-block w-5 h-5 opacity-50"
                                      fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd"
@@ -92,7 +95,7 @@ const Navbar = ({handleSidebar}) => {
                                     <div
                                         className="bg-white ring-1 ring-black ring-opacity-5 rounded divide-y divide-gray-100">
                                         <div className="p-2 space-y-1">
-                                            <Link role="menuitem" to='/dashboard'
+                                            <Link role="menuitem" to='/profile'
                                                className="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
                                                 <svg className="hi-solid hi-user-circle inline-block w-5 h-5 opacity-50"
                                                      fill="currentColor" viewBox="0 0 20 20"

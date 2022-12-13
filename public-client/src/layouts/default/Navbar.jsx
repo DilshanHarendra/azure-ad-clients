@@ -6,14 +6,14 @@ import { useMsal } from "@azure/msal-react";
 import {loginRequest} from "../../../authConfig.js";
 import {useDispatch, useSelector} from 'react-redux'
 import {setActiveAccount} from "../../store/reducers/usersSlice.js";
-import {activeAccountSelectors} from "../../store/selectors/userSelectors.js";
+import {activeAccountSelectors, userSelectors} from "../../store/selectors/userSelectors.js";
 
 const Navbar = () => {
     const dispatch = useDispatch()
     const [profileDropdown,setProfileDropdown] = useState(false)
     const { instance,accounts } = useMsal();
     const activeAccount = useSelector(activeAccountSelectors)
-
+    const user = useSelector(userSelectors)
     const logout = () => {
             instance.logoutRedirect({
                 postLogoutRedirectUri: "/",
@@ -54,6 +54,9 @@ const Navbar = () => {
                       <NavLink to="/"  className="hover:text-gray-400 px-4">
                           <span>Track my order</span>
                       </NavLink>
+                      <NavLink to="/product/new"  className="hover:text-gray-400 px-4">
+                          <span>Create Product</span>
+                      </NavLink>
                   </AuthenticatedTemplate>
                   <UnauthenticatedTemplate>
                       <button onClick={handleLogin} type="button"  className="hover:text-gray-400 px-4 uppercase">
@@ -93,12 +96,13 @@ const Navbar = () => {
                            <div className="relative inline-block">
                                <button
                                    type="button"
-                                   className="space-x-2 font-semibold focus:outline-none  leading-5 text-sm  text-gray-800 hover:text-gray-800"
+                                   className="flex items-center space-x-2 font-semibold focus:outline-none  leading-5 text-sm  text-gray-800 hover:text-gray-800"
                                    id="tk-dropdown-layouts-user"
                                    aria-haspopup="true"
                                    aria-expanded="true"
                                    onClick={()=>setProfileDropdown(prev=>!prev)}
                                >
+                                   <span>{user?.name}</span>
                                    <svg className="inline-block w-10 h-10 text-gray-500"
                                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                        <path fillRule="evenodd"
