@@ -6,6 +6,7 @@ import Home from "../pages/home/Home.jsx";
 import ProductDetails from "../pages/productDetails/ProductDetails";
 import Profile from "../pages/profile/Profile.jsx";
 import ProtectedLayout from "../layouts/ProtectedLayout.jsx";
+import ProductCreate from "../pages/productCraete/ProductCreate.jsx";
 
 function Router(){
 	return useRoutes([
@@ -30,6 +31,10 @@ function Router(){
 				{
 					path: '/profile',
 					element: <Profile/>,
+				},
+				{
+					path: '/product/new',
+					element: <ProductCreate/>,
 				},
 			]
 		}
