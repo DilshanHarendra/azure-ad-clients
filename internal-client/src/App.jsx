@@ -34,15 +34,15 @@ function App() {
         // Silently acquires an access token which is then attached to a request for Microsoft Graph data
         instance.acquireTokenSilent(request).then((response) => {
             dispatch(setToken(response))
-            callMsGraph(response.accessToken).then(response => {
-                dispatch(setUser(response))
-            });
+            // callMsGraph(response.accessToken).then(response => {
+            //     dispatch(setUser(response))
+            // });
         }).catch((e) => {
             instance.acquireTokenPopup(request).then((response) => {
                 dispatch(setToken(response))
-                callMsGraph(response.accessToken).then(response => {
-                    dispatch(setUser(response))
-                });
+                // callMsGraph(response.accessToken).then(response => {
+                //     dispatch(setUser(response))
+                // });
             });
         });
     }
