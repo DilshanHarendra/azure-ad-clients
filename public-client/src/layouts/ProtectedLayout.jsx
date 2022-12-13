@@ -41,7 +41,9 @@ const ProtectedLayout = () => {
     return (
         <>
          <Navbar/>
-            <Outlet/>
+          <div className="bg-gray-50">
+              <Outlet/>
+          </div>
             <Footer/>
                 <div className="fixed bottom-0 right-10 bg-white z-50 py-2 px-6 shadow flex items-center border border-gray-200">
                     <svg className="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
