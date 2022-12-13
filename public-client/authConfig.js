@@ -14,10 +14,14 @@ export const msalConfig = {
 
 // Add scopes here for ID token to be used at Microsoft identity platform endpoints.
 export const loginRequest = {
-    scopes: ["https://dperera.onmicrosoft.com/product-api/product.read"]
+    scopes: ["https://dperera.onmicrosoft.com/product-api/product.read",]
 };
 
 // Add the endpoints here for Microsoft Graph API services you'd like to use.
 export const graphConfig = {
     graphMeEndpoint: "https://graph.microsoft.com/v1.0/me"
+};
+export const profileEdit = {
+    policy:'B2C_1_profile_editing',
+    url: `https://dperera.b2clogin.com/dperera.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_profile_editing&client_id=${msalConfig.auth.clientId}&nonce=defaultNonce&redirect_uri=http://localhost:3000&scope=openid&response_type=id_token&prompt=login`
 };
