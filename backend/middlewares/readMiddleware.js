@@ -32,7 +32,7 @@ const readMiddleware = (req,res,next) => {
                     req.authInfo = info;
                     return   next();
                 }else{
-                    return   res.status(401).json({ error: 'Unauthorized' });
+                    return   res.status(401).json({ error: `Unauthorized\n users doesn't have product.read permission` });
                 }
 
             }catch (e) {
