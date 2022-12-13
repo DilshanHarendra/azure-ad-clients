@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import jwt_decode from "jwt-decode";
 const init = {
   user: null,
   token:null,
@@ -13,6 +14,8 @@ const usersSlice = createSlice({
       state.user = action.payload;
     },
     setToken: (state,action) => {
+      const decodedHeader = jwt_decode(action.payload.accessToken);
+      state.user = decodedHeader;
       state.token = action.payload;
     },
     setActiveAccount: (state,action) => {
